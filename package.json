@@ -6,8 +6,21 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.0.6",
+    "express": "~3",
     "hjs": "*",
+    "twitter-bootstrap-3.0.0": "*",
+    "grunt": "*",
+    "browserify": "*",
     "less-middleware": "*"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-browserify": "*",
+    "grunt-contrib-copy": "*",
+    //"grunt-cli": "*" //npm install grunt-cli -g
+    "napa": "~0.2.0"
+  },
+  "scripts": {
+    "install": "napa angular/bower-angular:angular"
   }
 }
