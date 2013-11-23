@@ -1,0 +1,42 @@
+@import 'bootstrap';
+
+@bodyBackground: #FAF7EC;
+@navbarBrandColor: #989CAE;
+
+.brand {
+  font-family: @font-family-monospace;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+
+  > li {
+    display: inline;
+  }
+
+  > li:before {
+    content: "|";
+    padding-right: 0.3em;
+  }
+
+  > li:nth-child(1):before {
+    content: "";
+    padding: 0;
+  }
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
