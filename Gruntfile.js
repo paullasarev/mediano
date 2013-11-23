@@ -35,7 +35,7 @@ module.exports = function(grunt) {
     },
     watch: {
       //files: ['app/**/*.js', 'shared/**/*.js', 'client/**/*.html', 'client/**/*.css'],
-      files: ['app/**/*'],
+      files: ['app/**/*', 'routes/*', 'views/*', 'app.js'],
       tasks: ['browserify', 'copy', 'less:dev'],
       options: {
           livereload: true
@@ -71,5 +71,5 @@ module.exports = function(grunt) {
 
   // The default tasks to run when you type: grunt
   //grunt.registerTask('default', ['clean', 'browserify', 'copy', 'less']);
-  grunt.registerTask('default', ['clean', 'browserify', 'copy', 'less', 'concurrent']);
+  grunt.registerTask('default', ['clean', 'browserify', 'copy', 'less:dev', 'concurrent']);
 };
