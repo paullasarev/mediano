@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "install": "napa angular/bower-angular:angular"
   },
   "dependencies": {
     "express": "~3",
@@ -14,13 +14,14 @@
     "less-middleware": "*"
   },
   "devDependencies": {
+    "napa": "~0.2.0",
     "grunt": "*",
     "grunt-browserify": "*",
     "grunt-contrib-copy": "*",
-    "napa": "~0.2.0",
-    "//": "npm install grunt-cli -g"
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-nodemon": "*",
+    "grunt-concurrent": "*"
   },
-  "scripts": {
-    "install": "napa angular/bower-angular:angular"
-  }
+  "//": "npm install grunt-cli -g"
 }
