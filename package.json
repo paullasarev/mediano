@@ -17,8 +17,8 @@
     "grunt": "*",
     "grunt-browserify": "*",
     "grunt-contrib-copy": "*",
-    //"grunt-cli": "*" //npm install grunt-cli -g
-    "napa": "~0.2.0"
+    "napa": "~0.2.0",
+    "//": "npm install grunt-cli -g"
   },
   "scripts": {
     "install": "napa angular/bower-angular:angular"
