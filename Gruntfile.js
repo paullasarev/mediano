@@ -55,5 +55,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
 
   // The default tasks to run when you type: grunt
-  grunt.registerTask('default', ['clean', 'browserify', 'copy']);
+  //grunt.registerTask('default', ['clean', 'browserify', 'copy']);
+  grunt.registerTask('default', ['concurrent']);
 };
