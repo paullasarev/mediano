@@ -15,8 +15,10 @@ module.exports = function(grunt) {
       dev: {
         options: {
           paths: ["node_modules/twitter-bootstrap-3.0.0/less"],
-          compress: false,
-          yuicompress: false,
+          //compress: true,
+          //yuicompress: true,
+          cleancss: true,
+          //sourceMap: true,
         },
         files: {
           "public/css/app.css": "app/css/app.less"
@@ -35,7 +37,7 @@ module.exports = function(grunt) {
     },
     watch: {
       //files: ['app/**/*.js', 'shared/**/*.js', 'client/**/*.html', 'client/**/*.css'],
-      files: ['app/**/*', 'routes/*', 'views/*', 'app.js'],
+      files: ['app/**/*', 'routes/*', 'views/*', 'app.js', 'Gruntfile.js'],
       tasks: ['browserify', 'copy', 'less:dev'],
       options: {
           livereload: true
@@ -71,5 +73,5 @@ module.exports = function(grunt) {
 
   // The default tasks to run when you type: grunt
   //grunt.registerTask('default', ['clean', 'browserify', 'copy', 'less']);
-  grunt.registerTask('default', ['clean', 'browserify', 'copy', 'less:dev', 'concurrent']);
+  grunt.registerTask('default', ['browserify', 'copy', 'less:dev', 'concurrent']);
 };
