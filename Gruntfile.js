@@ -9,12 +9,15 @@ module.exports = function(grunt) {
         // Compile to a single file to add a script tag for in your HTML
         dest: 'public/js/app.js',
         //debug: true,
+	options: {
+	 transform: ['debowerify'],
+	},
       },
     },
     less: {
       dev: {
         options: {
-          paths: ["node_modules/twitter-bootstrap-3.0.0/less"],
+          paths: ["bower_components/bootstrap/less"],
           //compress: true,
           //yuicompress: true,
           cleancss: true,
