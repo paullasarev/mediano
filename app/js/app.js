@@ -1,7 +1,7 @@
 // This will include ./node_modules/angular/angular.js
 // and give us access to the `angular` global object.
-require('angular/angular.min');
-require('angular-route/angular-route.min');
+require('../../bower_components/angular/angular.min');
+require('../../bower_components/angular-route/angular-route.min');
 
 // Create your app
 angular.module('myApp', ['ngRoute']).config(['$routeProvider', function($routeProvider) {

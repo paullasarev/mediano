@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         dest: 'public/js/app.js',
         //debug: true,
 	options: {
-	 transform: ['debowerify'],
+	 //transform: ['debowerify'],
 	},
       },
     },
