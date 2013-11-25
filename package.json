@@ -19,7 +19,7 @@
     "grunt-contrib-watch": "*",
     "grunt-nodemon": "*",
     "grunt-concurrent": "*",
-    "grunt-contrib-less": "~0.8.2"
+    "grunt-contrib-less": "*"
   },
   "//": [
     "preinstall: npm install -g grunt-cli bower",
