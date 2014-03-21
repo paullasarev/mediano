@@ -48,11 +48,11 @@ module.exports = function(grunt) {
     },
     nodemon: {
       dev: {
-        options: {
-          file: 'app.js',
-          watchedFolders: ['public', 'routes', 'views', 'app.js'],
-          delayTime: 1
-        }
+        script: 'app.js',
+        // options: {
+        //   watchedFolders: ['public', 'routes', 'views', 'app.js'],
+        //   delayTime: 1
+        // }
       }
     },
     concurrent: {
@@ -76,5 +76,6 @@ module.exports = function(grunt) {
 
   // The default tasks to run when you type: grunt
   //grunt.registerTask('default', ['clean', 'browserify', 'copy', 'less']);
+  //grunt.registerTask('default', ['browserify', 'copy', 'less:dev', 'nodemon']);
   grunt.registerTask('default', ['browserify', 'copy', 'less:dev', 'concurrent']);
 };
