@@ -37,6 +37,11 @@ module.exports = function(grunt) {
         src: ['**/*.html', 'img/*'],
         dest: 'public/',
       },
+      bootstrap: {
+        files: [
+          {expand: true, cwd: 'bower_components/bootstrap/fonts/', src: ['**'], dest: 'public/img/'}
+        ]
+      }
     },
     watch: {
       //files: ['app/**/*.js', 'shared/**/*.js', 'client/**/*.html', 'client/**/*.css'],

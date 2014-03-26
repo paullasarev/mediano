@@ -3,6 +3,7 @@
 //@bodyBackground: #FAF7EC;
 //@navbarBrandColor: #989CAE;
 @grid-gutter-width: 10px;
+@icon-font-path:          "../img/";
 
 .brand {
   font-family: @font-family-monospace;
@@ -26,3 +27,16 @@ body .container1 {
   margin-top: 15px;
 }
 
+.navbar-input-group {
+  font-size: 0px; /*removes whitespace between button and input*/
+
+  input {
+    border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+  }
+  .btn {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: 0px;
+  }
+}
