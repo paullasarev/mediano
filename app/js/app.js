@@ -7,7 +7,6 @@ require('../../bower_components/angular-animate/angular-animate.min');
 
 //bootstrap plugins
 require('../../bower_components/bootstrap/js/dropdown');
-//require('../../bower_components/bootstrap/js/scrollspy');
 require('../../bower_components/bootstrap/js/transition');
 require('../../bower_components/bootstrap/js/collapse');
 
@@ -23,4 +22,3 @@ angular.module('myApp', ['ngRoute', 'mgcrea.ngStrap'])
   $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
 
-//angular.module('myApp', ['mgcrea.ngStrap']);
