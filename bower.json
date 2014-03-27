@@ -17,7 +17,15 @@
   ],
   "dependencies": {
     "angular-route": "~1.2",
+    "angular-animate": "~1.2",
     "angular": "~1.2",
+    "angular-strap": "2.0.0-rc.4",
+    "bootstrap": "~3"
+    "bootstrap-datapicker": "*"
+    "bootstrap-timepicker": "*"
+    "bootstrap-select": "*"
+  },
+  "resolutions": {
     "bootstrap": "~3"
   }
 }

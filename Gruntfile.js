@@ -8,10 +8,13 @@ module.exports = function(grunt) {
         src: 'app/js/app.js',
         // Compile to a single file to add a script tag for in your HTML
         dest: 'public/js/app.js',
-        //debug: true,
-	options: {
-	 //transform: ['debowerify'],
-	},
+      	options: {
+          sourceMaps: true,
+          bundleOptions: {
+              debug: true, //generate source map
+            }
+      	 //transform: ['debowerify'],
+      	},
       },
     },
     less: {
