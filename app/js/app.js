@@ -14,12 +14,13 @@ require('../../bower_components/angular-strap/dist/angular-strap.min');
 require('../../bower_components/angular-strap/dist/angular-strap.tpl.min');
 
 // Create your app
-var medianoApp = angular.module('medianoApp', ['ngRoute', 'mgcrea.ngStrap'])
-       .config(['$routeProvider', function($routeProvider) {
+var medianoApp = angular.module('medianoApp', ['ngRoute', 'mgcrea.ngStrap']);
+
+medianoApp.config(['$routeProvider', function($routeProvider) {
   // Specify routes to load our partials upon the given URLs
-  $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html'});
-  $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.when('/view', {templateUrl: 'partials/view.html'});
+  $routeProvider.when('/edit', {templateUrl: 'partials/edit.html'});
+  $routeProvider.otherwise({redirectTo: '/view'});
 }]);
 
 //medianoApp.controller();
