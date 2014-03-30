@@ -1,6 +1,8 @@
 // This will include ./node_modules/angular/angular.js
 // and give us access to the `angular` global object.
+
 require('../../bower_components/jquery/jquery.min');
+
 require('../../bower_components/angular/angular.min');
 require('../../bower_components/angular-route/angular-route.min');
 require('../../bower_components/angular-animate/angular-animate.min');
@@ -23,5 +25,11 @@ medianoApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view'});
 }]);
 
-//medianoApp.controller();
+medianoApp.controller('ViewController', function($scope) {
+  $scope.newPage = function() {
+    $scope.content = "new page";
+    $scope.html = "<p>new page</p>";
+  }
+});
+
 

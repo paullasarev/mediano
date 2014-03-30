@@ -16,16 +16,20 @@
     "tests"
   ],
   "dependencies": {
+    "jquery": "~1.9.1",
     "angular-route": "~1.2",
     "angular-animate": "~1.2",
     "angular": "~1.2",
     "angular-strap": "2.0.0-rc.4",
     "bootstrap": "~3",
-    "bootstrap-datapicker": "*",
+    "bootstrap-datepicker": "*",
     "bootstrap-timepicker": "*",
     "bootstrap-select": "*"
   },
   "resolutions": {
     "bootstrap": "~3"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.15"
   }
 }

@@ -19,10 +19,13 @@
     "grunt-contrib-watch": "*",
     "grunt-nodemon": "*",
     "grunt-concurrent": "*",
-    "grunt-contrib-less": "*"
+    "grunt-contrib-less": "*",
+    "karma": "^0.12.1",
+    "karma-jasmine": "^0.1.5",
+    "karma-chrome-launcher": "^0.1.2"
   },
   "//": [
     "preinstall: npm install -g grunt-cli bower",
     "postinstall: bower install"
-    ]
+  ]
 }
