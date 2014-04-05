@@ -25,14 +25,32 @@ medianoApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view'});
 }]);
 
-medianoApp.controller('ViewController', function($scope) {
+medianoApp.controller('ViewController', function($scope, ArticleService) {
+  var article = ArticleService.getArticle();
+  $scope.content = article.content;
+  $scope.html = article.html;
+
   $scope.newPage = function() {
     $scope.content = "new page";
     $scope.html = "<p>new page</p>";
   }
 });
 
-medianoApp.controller('EditController', function($scope) {
+medianoApp.controller('EditController', function($scope, ArticleService) {
+  var article = ArticleService.getArticle();
+  $scope.content = article.content;
+  $scope.html = article.html;
 
 });
+
+medianoApp.service('ArticleService', function() {
+    this.getArticle = function(id) {
+            return {
+            	content: "main page",
+            	html: "<p>main page</p>"
+            }
+        }
+ 
+});
+
 

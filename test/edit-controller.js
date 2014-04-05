@@ -1,6 +1,20 @@
 describe('Unit: EditController', function() {
   // Load the module with ViewController
-  beforeEach(module('medianoApp'));
+  //beforeEach(module('medianoApp'));
+  var FakeArticle = {content: 'asdf', html: '<p>asdf</p>'};
+  var FakeArticleService;
+
+  beforeEach(function(){
+    module('medianoApp', function($provide){
+    FakeArticleService = {
+      getArticle: function(id) {
+          return FakeArticle;
+        },
+      };
+
+    $provide.value('ArticleService', FakeArticleService);
+    });
+  });
 
   var ctrl, scope;
   // inject the $controller and $rootScope services
@@ -14,9 +28,12 @@ describe('Unit: EditController', function() {
     });
   }));
 
-  it('should create $scope.content when calling newPage', 
+  it('should load article from ArticleService', 
     function() {
-      expect(scope.content).toBeUndefined();
+      expect(scope.content).toBeDefined();
+      expect(scope.html).toBeDefined();
+      expect(scope.content).toEqual(FakeArticle.content);
+      expect(scope.html).toEqual(FakeArticle.html);
   });
 
 
