@@ -20,8 +20,8 @@ var medianoApp = angular.module('medianoApp', ['ngRoute', 'mgcrea.ngStrap']);
 
 medianoApp.config(['$routeProvider', function($routeProvider) {
   // Specify routes to load our partials upon the given URLs
-  $routeProvider.when('/view', {templateUrl: 'partials/view.html'});
-  $routeProvider.when('/edit', {templateUrl: 'partials/edit.html'});
+  $routeProvider.when('/view', {templateUrl: 'partials/view.html', controller: 'ViewController'});
+  $routeProvider.when('/edit', {templateUrl: 'partials/edit.html', controller: 'EditController'});
   $routeProvider.otherwise({redirectTo: '/view'});
 }]);
 
@@ -32,4 +32,7 @@ medianoApp.controller('ViewController', function($scope) {
   }
 });
 
+medianoApp.controller('EditController', function($scope) {
+
+});
 

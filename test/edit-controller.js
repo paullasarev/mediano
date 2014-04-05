@@ -1,4 +1,4 @@
-describe('Unit: ViewController', function() {
+describe('Unit: EditController', function() {
   // Load the module with ViewController
   beforeEach(module('medianoApp'));
 
@@ -9,7 +9,7 @@ describe('Unit: ViewController', function() {
     // Create a new scope that's a child of the $rootScope
     scope = $rootScope.$new();
     // Create the controller
-    ctrl = $controller('ViewController', {
+    ctrl = $controller('EditController', {
       $scope: scope
     });
   }));
@@ -17,9 +17,6 @@ describe('Unit: ViewController', function() {
   it('should create $scope.content when calling newPage', 
     function() {
       expect(scope.content).toBeUndefined();
-      scope.newPage();
-      expect(scope.content).toEqual("new page");
-      expect(scope.html).toEqual("<p>new page</p>");
   });
 
 
