@@ -1,5 +1,7 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  <!--{{ 'Current version is v%VERSION%.' | interpolate }}-->
-</p>
+<div ng-controller="EditController">
+  <form nnovalidate role="form">
+    <div  class="form-group"  >
+      <textarea ng-model="content" class="form-control" norows="10" id="contentGroup"/>
+    </div>
+  </form>
+</div>

@@ -24,7 +24,8 @@
     "bootstrap": "~3",
     "bootstrap-datepicker": "*",
     "bootstrap-timepicker": "*",
-    "bootstrap-select": "*"
+    "bootstrap-select": "*",
+    "angular-sanitize": "~1.2.16"
   },
   "resolutions": {
     "bootstrap": "~3"
