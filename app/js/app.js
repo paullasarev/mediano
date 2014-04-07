@@ -6,7 +6,7 @@ require('../../bower_components/jquery/jquery.min');
 require('../../bower_components/angular/angular.min');
 require('../../bower_components/angular-route/angular-route.min');
 require('../../bower_components/angular-animate/angular-animate.min');
-require('../../bower_components/angular-sanitize/angular-sanitize.min');
+require('../../bower_components/angular-sanitize/angular-sanitize');
 
 //bootstrap plugins
 require('../../bower_components/bootstrap/js/dropdown');

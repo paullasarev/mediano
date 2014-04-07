@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "preinstall": "grunt --version && bower --version && echo done preinstall || npm install -g grunt-cli bower"
+    "preinstall": "grunt --version && bower --version && karma --version && echo done preinstall || npm install -g grunt-cli bower karma-cli"
   },
   "dependencies": {
     "express": "~3",
@@ -25,7 +25,7 @@
     "karma-chrome-launcher": "^0.1.2"
   },
   "//": [
-    "preinstall: npm install -g grunt-cli bower",
+    "preinstall: npm install -g grunt-cli bower karma-cli",
     "postinstall: bower install"
   ]
 }
