@@ -1,7 +1,17 @@
 <div ng-controller="EditController">
-  <form nnovalidate role="form">
-    <div  class="form-group"  >
-      <textarea ng-model="content" class="form-control msd-elastic" norows="10" id="contentGroup"/>
+    <div  class="form-group">
+    	<div class="btn-toolbar" role="toolbar" id="editHeader">
+    		<div class="btn-group">
+    			<button type="button" class="btn btn-default">Save</button>
+  				<button type="button" class="btn btn-default">Cancel</button>
+    		</div>
+    	</div>
+    </div>
+
+  <form role="form">
+    <div  class="form-group">
+    	<textarea ng-model="content" class="form-control msd-elastic" norows="10" id="contentGroup"/>
     </div>
   </form>
+
 </div>
