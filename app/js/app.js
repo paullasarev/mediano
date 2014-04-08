@@ -7,6 +7,7 @@ require('../../bower_components/angular/angular.min');
 require('../../bower_components/angular-route/angular-route.min');
 require('../../bower_components/angular-animate/angular-animate.min');
 require('../../bower_components/angular-sanitize/angular-sanitize');
+require('../../bower_components/angular-elastic/elastic');
 
 //bootstrap plugins
 require('../../bower_components/bootstrap/js/dropdown');
@@ -16,8 +17,10 @@ require('../../bower_components/bootstrap/js/collapse');
 require('../../bower_components/angular-strap/dist/angular-strap.min');
 require('../../bower_components/angular-strap/dist/angular-strap.tpl.min');
 
+//require('../../lib/expanding');
+
 // Create your app module
-var medianoApp = angular.module('medianoApp', ['ngRoute', 'mgcrea.ngStrap', 'ngSanitize']);
+var medianoApp = angular.module('medianoApp', ['ngRoute', 'mgcrea.ngStrap', 'ngSanitize', 'monospaced.elastic']);
 
 medianoApp.config(['$routeProvider', function($routeProvider) {
   // Specify routes to load our partials upon the given URLs
@@ -38,7 +41,8 @@ medianoApp.controller('ViewController', function($scope, ArticleService) {
 });
 
 var editViewLoaded = function () {
-  $("#contentGroup").height($(document).height() - 100);
+//  $("#contentGroup").height($(document).height() - 100);
+//	$("#contentGroup").expanding();
 };
 
 medianoApp.controller('EditController', function($scope, ArticleService) {
@@ -60,6 +64,6 @@ medianoApp.service('ArticleService', function() {
  
 });
 
-$(document).ready(function(){
-    $(window).resize(editViewLoaded);
-});
+// $(document).ready(function(){
+//     $(window).resize(editViewLoaded);
+// });
