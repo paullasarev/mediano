@@ -2,16 +2,27 @@
     <div  class="form-group">
     	<div class="btn-toolbar" role="toolbar" id="editHeader">
     		<div class="btn-group">
+    			<button type="button" class="btn btn-default">h1</button>
+  				<button type="button" class="btn btn-default">h2</button>
+  				<button type="button" class="btn btn-default">ul</button>
+  				<button type="button" class="btn btn-default">ol</button>
+  				<button type="button" class="btn btn-default">link</button>
+  				<button type="button" class="btn btn-default">image</button>
+  				<button type="button" class="btn btn-default">table</button>
+    		</div>
+    	</div>
+    </div>
+
+    <div  class="form-group">
+    	<textarea ng-model="content" class="form-control msd-elastic" norows="10" id="contentGroup"/>
+    </div>
+
+    <div  class="form-group">
+    	<div class="btn-toolbar" role="toolbar" id="editFooter">
+    		<div class="btn-group">
     			<button type="button" class="btn btn-default">Save</button>
   				<button type="button" class="btn btn-default">Cancel</button>
     		</div>
     	</div>
     </div>
-
-  <form role="form">
-    <div  class="form-group">
-    	<textarea ng-model="content" class="form-control msd-elastic" norows="10" id="contentGroup"/>
-    </div>
-  </form>
-
 </div>
