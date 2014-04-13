@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "preinstall": "grunt --version && bower --version && karma --version && echo done preinstall || npm install -g grunt-cli bower karma-cli"
+    "start": "node app.js",
+    "prestart": "gulp",
+    "test": "karma start karma.conf.js",
+    "preinstall": "gulp --version && bower --version && karma --version && echo done preinstall || npm install -g gulp bower karma-cli",
+    "postinstall": "bower install"
   },
   "dependencies": {
     "express": "~3",
@@ -12,20 +16,15 @@
   "devDependencies": {
     "browserify": "*",
     "debowerify": "*",
-    "grunt": "*",
-    "grunt-browserify": "*",
-    "grunt-contrib-copy": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-nodemon": "*",
-    "grunt-concurrent": "*",
-    "grunt-contrib-less": "*",
     "karma": "^0.12.1",
     "karma-jasmine": "^0.1.5",
-    "karma-chrome-launcher": "^0.1.2"
-  },
-  "//": [
-    "preinstall: npm install -g grunt-cli bower karma-cli",
-    "postinstall: bower install"
-  ]
+    "karma-chrome-launcher": "^0.1.2",
+    "yargs": "^1.2.1",
+    "run-sequence": "^0.3.6",
+    "gulp-browserify": "^0.5.0",
+    "gulp-clean": "^0.2.4",
+    "gulp-livereload": "^1.3.1",
+    "gulp": "^3.6.0",
+    "gulp-less": "^1.2.3"
+  }
 }
