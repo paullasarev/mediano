@@ -26,4 +26,11 @@ describe('Unit: ArticleService', function() {
       expect(article.html).toBeDefined();
   });
 
+  it('unknown id should create new article', 
+    function() {
+      var article = ArticleService.getArticle('new');
+      expect(article).toBeDefined();
+      expect(article.content).toBeDefined();
+      expect(article.html).toBeDefined();
+  });
 });

@@ -78,7 +78,12 @@ var Articles={};
 medianoApp.service('ArticleService', function() {
     this.getArticle = function(id) {
       //console.log("getArticle:Articles: " + JSON.stringify(Articles));
-      return Articles[id];
+      var article = Articles[id];
+      if (typeof(article) ==  'undefined') {
+        var content = 'new page';
+        article = {id:id, content:content, html:this.md2html(content)};
+      }
+      return article;      
     };
 
     this.md2html = function(content){
