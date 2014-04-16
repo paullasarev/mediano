@@ -1,7 +1,7 @@
 describe('Unit: EditController', function() {
   // Load the module with ViewController
   //beforeEach(module('medianoApp'));
-  var FakeArticle = {content: 'asdf', html: '<p>asdf</p>', id:'main'};
+  var FakeArticle = {};
   var NewContent = 'new content';
   var FakeArticleService;
 
@@ -12,10 +12,11 @@ describe('Unit: EditController', function() {
           return FakeArticle;
         },
       setArticle: function(id, cont) {
-          FakeArticle = {'id':id, 'content': cont};
-
+          FakeArticle = {'id':id, 'content': cont, 'html':'<p>' + cont + '</p>'};
         },
       };
+
+    FakeArticleService.setArticle('main', 'asdf');
 
     $provide.value('ArticleService', FakeArticleService);
     });
@@ -47,6 +48,14 @@ describe('Unit: EditController', function() {
       scope.content = NewContent;
       scope.SavePage();
       expect(FakeArticle.content).toEqual(NewContent);
+  });
+
+  it('CancelPage should restore article from ArticleService', 
+    function() {
+      expect(scope.content).toEqual(FakeArticle.content);
+      scope.content = NewContent;
+      scope.CancelPage();
+      expect(scope.content).toEqual(FakeArticle.content);
   });
 
 })

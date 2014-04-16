@@ -66,6 +66,11 @@ medianoApp.controller('EditController', function($scope, ArticleService, $routeP
     ArticleService.setArticle($routeParams.articleId, $scope.content);
   };
 
+  $scope.CancelPage = function() {
+    var article = ArticleService.getArticle($routeParams.articleId);
+    $scope.content = article.content;
+  };
+
 });
 
 var Articles={};

@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node app.js",
     "prestart": "gulp",
-    "test": "karma start karma.conf.js",
-    "preinstall": "gulp --version && bower --version && karma --version && echo done preinstall || npm install -g gulp bower karma-cli",
+    "test": "gulp test",
+    "preinstall": "gulp --version && bower --version && karma --version && mocha --version && echo done preinstall || npm install -g gulp bower karma-cli mocha",
     "postinstall": "bower install"
   },
   "dependencies": {
@@ -25,6 +25,10 @@
     "gulp-clean": "^0.2.4",
     "gulp-livereload": "^1.3.1",
     "gulp": "^3.6.0",
-    "gulp-less": "^1.2.3"
+    "gulp-less": "^1.2.3",
+    "cheerio": "^0.15.0",
+    "gulp-mocha": "^0.4.1",
+    "chai": "^1.9.1",
+    "gulp-karma": "0.0.4"
   }
 }

@@ -1,15 +1,11 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
 var browserify = require('gulp-browserify');
-//var uglify = require('gulp-uglify');
-//var concat = require('gulp-concat');
-//var rename = require("gulp-rename");
-//var filter = require("gulp-filter");
-//var footer = require("gulp-footer");
-//var gulpif = require('gulp-if');
 var less = require('gulp-less'); 
 var runSequence = require('run-sequence');
 var livereload = require('gulp-livereload');
+var mocha = require('gulp-mocha');
+var karma = require('gulp-karma');
 
 var args = require('yargs').argv;
 
@@ -63,6 +59,36 @@ var tasks = ['js', 'html', 'img', 'bootstrap-fonts', 'css'];
 
 gulp.task('server', tasks, function() {
 	require('./app');
+});
+
+gulp.task('test-server', function() {
+    return gulp.src('test/server/**/*.js')
+        .pipe(mocha({reporter: 'spec'}));
+});
+
+gulp.task('test-server-watch', ['test-server'], function() {
+  gulp.watch('test/server/**/*.js', ['test-server']);
+});
+
+var karmaFiles = [
+      'public/js/*.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+      'test/**/*.js'
+    ];
+
+gulp.task('test-karma-watch', function() {
+  return gulp.src(karmaFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'watch'
+    }));
+});
+
+gulp.task('test', ['test-server-watch', 'test-karma-watch']);
+
+gulp.task('test1', ['test-server', 'test-karma'], function() {
+  gulp.watch('test/server/**/*.js', ['test-server']);
+  gulp.watch(karmaFiles, ['test-karma']);
 });
 
 gulp.task('build', tasks);
