@@ -6,11 +6,11 @@ describe('Unit: routes', function() {
 
     inject(function($route) {
 
-      expect($route.routes['/view'].templateUrl).toEqual('partials/view.html');
-      expect($route.routes['/view'].controller).toBe('ViewController');
+      expect($route.routes['/:articleId/view'].templateUrl).toEqual('partials/view.html');
+      expect($route.routes['/:articleId/view'].controller).toBe('ViewController');
 
-      expect($route.routes['/edit'].templateUrl).toEqual('partials/edit.html');
-      expect($route.routes['/edit'].controller).toBe('EditController');
+      expect($route.routes['/:articleId/edit'].templateUrl).toEqual('partials/edit.html');
+      expect($route.routes['/:articleId/edit'].controller).toBe('EditController');
 
       // expect($route.routes['/phones/:phoneId'].templateUrl).
       // toEqual('partials/phone-detail.html');
@@ -18,7 +18,7 @@ describe('Unit: routes', function() {
       // toEqual('PhoneDetailCtrl');
 
       // otherwise redirect to
-      expect($route.routes[null].redirectTo).toEqual('/view');
+      expect($route.routes[null].redirectTo).toEqual('/main/view');
     });
   });  
 

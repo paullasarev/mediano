@@ -1,7 +1,8 @@
 describe('Unit: EditController', function() {
   // Load the module with ViewController
   //beforeEach(module('medianoApp'));
-  var FakeArticle = {content: 'asdf', html: '<p>asdf</p>'};
+  var FakeArticle = {content: 'asdf', html: '<p>asdf</p>', id:'main'};
+  var NewContent = 'new content';
   var FakeArticleService;
 
   beforeEach(function(){
@@ -9,6 +10,10 @@ describe('Unit: EditController', function() {
     FakeArticleService = {
       getArticle: function(id) {
           return FakeArticle;
+        },
+      setArticle: function(id, cont) {
+          FakeArticle = {'id':id, 'content': cont};
+
         },
       };
 
@@ -36,5 +41,12 @@ describe('Unit: EditController', function() {
       expect(scope.html).toEqual(FakeArticle.html);
   });
 
+  it('should save article to ArticleService', 
+    function() {
+      expect(scope.content).toEqual(FakeArticle.content);
+      scope.content = NewContent;
+      scope.SavePage();
+      expect(FakeArticle.content).toEqual(NewContent);
+  });
 
 })

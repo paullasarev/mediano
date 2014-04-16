@@ -24,15 +24,22 @@ var medianoApp = angular.module('medianoApp', ['ngRoute', 'mgcrea.ngStrap', 'ngS
 
 medianoApp.config(['$routeProvider', function($routeProvider) {
   // Specify routes to load our partials upon the given URLs
-  $routeProvider.when('/view', {templateUrl: 'partials/view.html', controller: 'ViewController'});
-  $routeProvider.when('/edit', {templateUrl: 'partials/edit.html', controller: 'EditController'});
-  $routeProvider.otherwise({redirectTo: '/view'});
+  $routeProvider.when('/:articleId/view', {templateUrl: 'partials/view.html', controller: 'ViewController'});
+  $routeProvider.when('/:articleId/edit', {templateUrl: 'partials/edit.html', controller: 'EditController'});
+  $routeProvider.otherwise({redirectTo: '/main/view'});
 }]);
 
-medianoApp.controller('ViewController', function($scope, ArticleService) {
-  var article = ArticleService.getArticle();
+medianoApp.controller('NavController', function($scope, $rootScope) {
+  $scope.currentArticle = function() {
+    return $rootScope.currentArticle;
+  };
+});
+
+medianoApp.controller('ViewController', function($scope, ArticleService, $routeParams, $rootScope) {
+  var article = ArticleService.getArticle($routeParams.articleId);
   $scope.content = article.content;
   $scope.html = article.html;
+  $rootScope.currentArticle = $routeParams.articleId;
 
   $scope.newPage = function() {
     $scope.content = "new page";
@@ -45,23 +52,42 @@ var editViewLoaded = function () {
 //	$("#contentGroup").expanding();
 };
 
-medianoApp.controller('EditController', function($scope, ArticleService) {
-  var article = ArticleService.getArticle();
+medianoApp.controller('EditController', function($scope, ArticleService, $routeParams, $rootScope) {
+
+  var article = ArticleService.getArticle($routeParams.articleId);
   $scope.content = article.content;
   $scope.html = article.html;
+  $rootScope.currentArticle = $routeParams.articleId;
 
   $scope.$on('$viewContentLoaded', editViewLoaded);
 
+  $scope.SavePage = function() {
+    //console.log("SavePage: id:" + $routeParams.articleId + " content: " + $scope.content);
+    ArticleService.setArticle($routeParams.articleId, $scope.content);
+  };
+
 });
+
+var Articles={};
 
 medianoApp.service('ArticleService', function() {
     this.getArticle = function(id) {
-            return {
-            	content: "main page",
-            	html: "<p>main page</p>"
-            }	
-        }
- 
+      //console.log("getArticle:Articles: " + JSON.stringify(Articles));
+      return Articles[id];
+    };
+
+    this.md2html = function(content){
+      return '<p>' + content + '</p>';
+    };
+
+    this.setArticle = function(id, content) {
+      var article = {id:id, content:content, html:this.md2html(content)};
+      //console.log("setArticle: " + JSON.stringify(article));
+      Articles[id] = article;
+      //console.log("setArticle:Articles: " + JSON.stringify(Articles));
+    };
+
+    this.setArticle('main', 'main page');
 });
 
 // $(document).ready(function(){
