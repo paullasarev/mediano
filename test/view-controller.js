@@ -7,8 +7,11 @@ describe('Unit: ViewController', function() {
     FakeArticleService = {
       getArticle: function(id) {
           return FakeArticle;
-        },
-      };
+      },
+      newPage: function(id){
+        return {content: 'new page', html: '<p>new page</p>'};
+      }
+    };
 
     $provide.value('ArticleService', FakeArticleService);
     });

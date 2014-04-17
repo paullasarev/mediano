@@ -33,4 +33,13 @@ describe('Unit: ArticleService', function() {
       expect(article.content).toBeDefined();
       expect(article.html).toBeDefined();
   });
+
+  it('should have newPage method', 
+    function() {
+      var article = ArticleService.newPage('new');
+      expect(article).toBeDefined();
+      expect(article.content).toEqual('new page');
+      expect(article.html).toEqual('<p>new page</p>');
+      expect(article.id).toEqual('new');
+  });
 });

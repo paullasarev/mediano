@@ -67,7 +67,7 @@ gulp.task('test-server', function() {
 });
 
 gulp.task('test-server-watch', ['test-server'], function() {
-  gulp.watch('test/server/**/*.js', ['test-server']);
+  gulp.watch(['test/server/**/*.js', 'public/**/*'], ['test-server']);
 });
 
 var karmaFiles = [
