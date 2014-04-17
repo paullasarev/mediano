@@ -29,6 +29,7 @@
     "cheerio": "^0.15.0",
     "gulp-mocha": "^0.4.1",
     "chai": "^1.9.1",
-    "gulp-karma": "0.0.4"
+    "gulp-karma": "0.0.4",
+    "showdown": "git://github.com/paullasarev/showdown.git#master"
   }
 }

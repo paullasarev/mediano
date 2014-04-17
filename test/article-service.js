@@ -1,3 +1,4 @@
+
 describe('Unit: ArticleService', function() {
   var ArticleService;
   beforeEach(function(){
@@ -42,4 +43,14 @@ describe('Unit: ArticleService', function() {
       expect(article.html).toEqual('<p>new page</p>');
       expect(article.id).toEqual('new');
   });
+
+  it('parser should translate md to html', 
+    function() {
+      var content = 'md';
+      var etalon = '<p>md</p>';
+      var html = ArticleService.md2html(content);
+
+      expect(html).toEqual(etalon);
+  });
+
 });
