@@ -34,6 +34,9 @@ module.exports.EditController = function($scope, ArticleService, $routeParams, $
   $rootScope.currentArticle = $routeParams.articleId;
 
 //  $scope.$on('$viewContentLoaded', editViewLoaded);
+  $scope.Changed = function() {
+    $scope.html = ArticleService.md2html($scope.content);
+};
 
   $scope.SavePage = function() {
     //console.log("SavePage: id:" + $routeParams.articleId + " content: " + $scope.content);

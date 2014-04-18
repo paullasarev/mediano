@@ -10,10 +10,14 @@ describe('Unit: EditController', function() {
     FakeArticleService = {
       getArticle: function(id) {
           return FakeArticle;
-        },
+      },
       setArticle: function(id, cont) {
           FakeArticle = {'id':id, 'content': cont, 'html':'<p>' + cont + '</p>'};
-        },
+      },
+      md2html: function(content) {
+          return "<p>" + content + "</p>";
+      },
+
       };
 
     FakeArticleService.setArticle('main', 'asdf');
@@ -56,6 +60,14 @@ describe('Unit: EditController', function() {
       scope.content = NewContent;
       scope.CancelPage();
       expect(scope.content).toEqual(FakeArticle.content);
+  });
+
+  it('Changed should turn content into html', 
+    function() {
+      scope.content = NewContent;
+      scope.Changed();
+      var etalon = FakeArticleService.md2html(NewContent);
+      expect(scope.html).toEqual(etalon);
   });
 
 })

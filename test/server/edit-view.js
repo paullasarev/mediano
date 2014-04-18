@@ -34,15 +34,20 @@ describe('Unit: EditView', function() {
  	it('should have content binding', function() {
  		expect(viewQuery('#contentText').attr('ng-model')).to.equal('content');
  		expect(viewQuery('#contentText').attr('ng-model')).to.equal('content');
+ 		expect(viewQuery('#contentText').attr('ng-change')).to.equal('Changed()');
 	});
+
+ 	it('should have html binding', function() {
+ 		expect(viewQuery('#contentHtml').attr('ng-bind-html')).to.equal('html');
+ 	});
 
  	it('should contain CSS rule', function() {
  		var re = /#contentText[ \t]*{[^}]*}/m;
  		var pos = cssContent.search(re); 
- 		console.log('pos: ', pos);
+ 		// console.log('pos: ', pos);
  		expect(pos>=0).to.be.ok;
  		var text = cssContent.substr(pos).match(re)[0];
- 		console.log(util.inspect(text ,{depth:11}));
+ 		// console.log(util.inspect(text ,{depth:11}));
 
 	});
  });
