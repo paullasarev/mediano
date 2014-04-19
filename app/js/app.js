@@ -82,4 +82,6 @@ medianoApp.directive('contentText', [
    directives.ContentText
 ]);
 
+medianoApp.value('directives', directives);
+
 

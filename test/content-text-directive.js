@@ -1,10 +1,11 @@
 describe('content-text directive', function() {
   var elm, scope;
   var changedCall;
+  var ContentTextLogic;
 
   beforeEach(module('medianoApp'));
 
-  beforeEach(inject(function($rootScope, $compile) {
+  beforeEach(inject(function($rootScope, $compile, directives) {
     elm = angular.element(
       '<div>' +
       '<textarea content-text/>' +
@@ -20,6 +21,8 @@ describe('content-text directive', function() {
 
     $compile(elm)(scope);
     scope.$digest();
+
+    ContentTextLogic = directives.ContentTextLogic;
   }));
 
   it('should have direcitve attr', function() {
@@ -34,4 +37,10 @@ describe('content-text directive', function() {
     expect(changedCall).toBe(1);
     expect(scope.content).toBe(text);
   });
+
+  it('logic should insert into selected textarea',  function() {
+    var result = ContentTextLogic('123', 'asdf123qwe', 4, 7);
+    expect(result.value).toBe('asdf123qwe');
+  });
+
 });
