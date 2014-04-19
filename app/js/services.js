@@ -1,6 +1,14 @@
 //var showdown = require('../../bower_components/showdown/src/showdown');
 var showdown = require('showdown');
 var mdConverter = new showdown.converter(); 
+var marked = require('marked');
+var highlight = require('highlight.js');
+
+marked.setOptions({
+  highlight: function (code) {
+    return highlight.highlightAuto(code).value;
+  }
+});
 
 var Articles={};
 
@@ -15,7 +23,8 @@ module.exports.ArticleService = function($rootScope) {
   };
 
   this.md2html = function(content){
-    return mdConverter.makeHtml(content);
+    // return mdConverter.makeHtml(content);
+    return marked(content);
   };
 
   this.setArticle = function(id, content) {

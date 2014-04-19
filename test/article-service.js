@@ -40,14 +40,14 @@ describe('Unit: ArticleService', function() {
       var article = ArticleService.newPage('new');
       expect(article).toBeDefined();
       expect(article.content).toEqual('new page');
-      expect(article.html).toEqual('<p>new page</p>');
+      expect(article.html).toEqual('<p>new page</p>\n');
       expect(article.id).toEqual('new');
   });
 
   it('parser should translate md to html', 
     function() {
       var content = 'md';
-      var etalon = '<p>md</p>';
+      var etalon = '<p>md</p>\n';
       var html = ArticleService.md2html(content);
 
       expect(html).toEqual(etalon);
