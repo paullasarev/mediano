@@ -4,6 +4,7 @@ describe('Unit: EditController', function() {
   var FakeArticle = {};
   var NewContent = 'new content';
   var FakeArticleService;
+  var rootScope;
 
   beforeEach(function(){
     module('medianoApp', function($provide){
@@ -24,6 +25,11 @@ describe('Unit: EditController', function() {
 
     $provide.value('ArticleService', FakeArticleService);
     });
+
+    inject(function($injector) {
+      rootScope = $injector.get('$rootScope');
+      spyOn(rootScope, '$broadcast');
+    })   
   });
 
   var ctrl, scope;
@@ -70,4 +76,17 @@ describe('Unit: EditController', function() {
       expect(scope.html).toEqual(etalon);
   });
 
+  it('toolH3 should add sample text', 
+    function() {
+      // scope.content = '';
+      scope.toolH3();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n### Header');
+  });
+
+  it('toolH2 should add sample text', 
+    function() {
+      // scope.content = '';
+      scope.toolH2();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n## Header');
+  });
 })

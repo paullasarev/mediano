@@ -19,6 +19,7 @@ require('../../bower_components/angular-strap/dist/angular-strap.tpl.min');
 
 var controllers = require("./controllers");
 var services = require("./services");
+var directives = require("./directives");
 
 // Create your app module
 var medianoApp = angular.module('medianoApp', [
@@ -43,6 +44,8 @@ medianoApp.config(['$routeProvider', function($routeProvider) {
 
 }]);
 
+// Register controllers
+
 medianoApp.controller('NavController', [
   '$scope',
   '$rootScope',
@@ -65,7 +68,18 @@ medianoApp.controller('EditController', [
   controllers.EditController
 ]);
 
+// Register services
+
 medianoApp.service('ArticleService', [
   '$rootScope',
   services.ArticleService
 ]);
+
+// Register directives
+
+medianoApp.directive('contentText', [
+  '$rootScope',
+   directives.ContentText
+]);
+
+

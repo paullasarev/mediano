@@ -2,13 +2,17 @@
     <div  class="form-group">
     	<div class="btn-toolbar" role="toolbar" id="editHeader">
     		<div class="btn-group">
-    			<button type="button" class="btn btn-default">h1</button>
-  				<button type="button" class="btn btn-default">h2</button>
-  				<button type="button" class="btn btn-default">ul</button>
-  				<button type="button" class="btn btn-default">ol</button>
-  				<button type="button" class="btn btn-default">link</button>
-  				<button type="button" class="btn btn-default">image</button>
-  				<button type="button" class="btn btn-default">table</button>
+    			<button type="button" class="btn btn-default" ng-click="toolH3()">h3</button>
+  				<button type="button" class="btn btn-default" ng-click="toolH2()">h2</button>
+  				<button type="button" class="btn btn-default" ng-click="toolUL()">ul</button>
+  				<button type="button" class="btn btn-default" ng-click="toolOL()">ol</button>
+          <button type="button" class="btn btn-default" ng-click="toolB()">B</button>
+          <button type="button" class="btn btn-default" ng-click="toolI()">i</button>
+  				<button type="button" class="btn btn-default" ng-click="toolLNK()">link</button>
+  				<button type="button" class="btn btn-default" ng-click="toolIMG()">img</button>
+          <button type="button" class="btn btn-default" ng-click="toolCOD()">code</button>
+          <button type="button" class="btn btn-default" ng-click="toolCIT()">cit</button>
+  				<button type="button" class="btn btn-default" ng-click="toolTBL()">tbl</button>
     		</div>
     	</div>
     </div>
@@ -16,7 +20,7 @@
 <div class="container padleft0">
     <div  class="form-group col-md-6 padleft0">
     	<textarea ng-model="content" class="form-control msd-elastic" rows="10" id="contentText"
-      ng-change="Changed()"/>
+      ng-change="Changed()" content-text/>
     </div>
     <div class="col-md-6 padleft" ng-bind-html="html" id="contentHtml">
     </div>

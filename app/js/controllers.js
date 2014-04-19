@@ -46,6 +46,21 @@ module.exports.EditController = function($scope, ArticleService, $routeParams, $
   $scope.CancelPage = function() {
     var article = ArticleService.getArticle($routeParams.articleId);
     $scope.content = article.content;
+    $scope.Changed();
+  };
+
+  $scope.insertText = function(text) {
+    // $scope.content += text;
+    $rootScope.$broadcast('insertContent', text);
+    $scope.Changed();
+  };
+
+  $scope.toolH3 = function() {
+    $scope.insertText('\n### Header');
+  };
+
+  $scope.toolH2 = function() {
+    $scope.insertText('\n## Header');
   };
 
 };

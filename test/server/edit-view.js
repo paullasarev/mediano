@@ -33,8 +33,8 @@ describe('Unit: EditView', function() {
 
  	it('should have content binding', function() {
  		expect(viewQuery('#contentText').attr('ng-model')).to.equal('content');
- 		expect(viewQuery('#contentText').attr('ng-model')).to.equal('content');
  		expect(viewQuery('#contentText').attr('ng-change')).to.equal('Changed()');
+ 		expect(viewQuery('#contentText').is('.msd-elastic')).to.be.ok;
 	});
 
  	it('should have html binding', function() {
@@ -50,4 +50,19 @@ describe('Unit: EditView', function() {
  		// console.log(util.inspect(text ,{depth:11}));
 
 	});
+
+ 	it('should have toolbar binding', function() {
+ 		expect(viewQuery('button[ng-click="toolH3()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolH2()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolUL()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolOL()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolB()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolI()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolLNK()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolIMG()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolCOD()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolCIT()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolTBL()"]').is('button')).to.be.ok;
+	});
+
  });
