@@ -56,11 +56,60 @@ module.exports.EditController = function($scope, ArticleService, $routeParams, $
   };
 
   $scope.toolH3 = function() {
-    $scope.insertText('\n### Header');
+    $scope.insertText('\n### (Header)');
   };
 
   $scope.toolH2 = function() {
-    $scope.insertText('\n## Header');
+    $scope.insertText('\n## (Header)');
+  };
+
+  $scope.toolUL = function() {
+    $scope.insertText('\n* (item)');
+  };
+
+  $scope.toolOL = function() {
+    $scope.insertText('\n1. (item)');
+  };
+
+  $scope.toolB = function() {
+    $scope.insertText('**(bold)**');
+  };
+
+  $scope.toolI = function() {
+    $scope.insertText('*(italic)*');
+  };
+
+  $scope.toolLNK = function() {
+    $scope.insertText('[(text)]()');
+  };
+
+  $scope.toolHREF = function() {
+    $scope.insertText('[(text)](http://example.com)');
+  };
+
+  $scope.toolIMG = function() {
+    $scope.insertText('![(alt text)](img.png)');
+  };
+
+  $scope.toolCOD = function() {
+    $scope.insertText('\n```\n(var sum = amount + 1;)\n```');
+  };
+
+  $scope.toolCIT = function() {
+    $scope.insertText('\n> (Lorem ipsum dolor sit amet, consectetur adipisicing elit,\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.)');
+
+  };
+
+  $scope.toolTBL = function() {
+    $scope.insertText('\n\n'
+        + '|(Left-Aligned  | Center Aligned  | Right Aligned|\n'
+        + '| :------------ |:---------------:| -----:|\n'
+        + '| col 3 is      | some wordy text | $1600 |\n'
+        + '| col 2 is      | centered        |   $12 |\n'
+        + '| zebra stripes | are neat        |    $1)|\n'
+        + '~(|---|\n'
+        + '|...|\n)'
+    );    
   };
 
 };

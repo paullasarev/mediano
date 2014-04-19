@@ -78,15 +78,80 @@ describe('Unit: EditController', function() {
 
   it('toolH3 should add sample text', 
     function() {
-      // scope.content = '';
       scope.toolH3();
-      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n### Header');
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n### (Header)');
   });
 
   it('toolH2 should add sample text', 
     function() {
-      // scope.content = '';
       scope.toolH2();
-      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n## Header');
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n## (Header)');
   });
+
+  it('toolUL should add sample text', 
+    function() {
+      scope.toolUL();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n* (item)');
+  });
+  
+  it('toolOL should add sample text', 
+    function() {
+      scope.toolOL();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n1. (item)');
+  });
+
+  it('toolB should add sample text', 
+    function() {
+      scope.toolB();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '**(bold)**');
+  });
+
+  it('toolB should add sample text', 
+    function() {
+      scope.toolI();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '*(italic)*');
+  });
+
+  it('toolI should add sample text', 
+    function() {
+      scope.toolI();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '*(italic)*');
+  });
+  
+  it('toolLNK should add sample text', 
+    function() {
+      scope.toolLNK();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '[(text)]()');
+  });
+  
+  it('toolHREF should add sample text', 
+    function() {
+      scope.toolHREF();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '[(text)](http://example.com)');
+  });
+  
+  it('toolIMG should add sample text', 
+    function() {
+      scope.toolIMG();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '![(alt text)](img.png)');
+  });
+  
+  it('toolCOD should add sample text', 
+    function() {
+      scope.toolCOD();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n```\n(var sum = amount + 1;)\n```');
+  });
+  
+  it('toolCIT should add sample text', 
+    function() {
+      scope.toolCIT();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', jasmine.any(String));
+  });
+  
+  it('toolTBL should add sample text', 
+    function() {
+      scope.toolTBL();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', jasmine.any(String));
+  });
+  
 })

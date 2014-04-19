@@ -21,7 +21,19 @@ module.exports.ContentText = function($rootScope) {
           }
           var scrollTop = domElement.scrollTop;
           var text = domElement.value;
-          var valLen = val.length;
+
+          var isSelected = false;
+          if (endPos > startPos) {
+            val = val.replace(/\([^)]*\)/, text.substring(startPos, endPos));
+            val = val.replace(/\~\(([^)]*)\)/, "$1");
+            isSelected = true;
+          } else {
+            val = val.replace(/\(([^)]*)\)/, "$1");
+            val = val.replace(/\~\(([^)]*)\)/, "");
+          }
+          
+          var varlenCorrection = 0;
+
           if (val[0] == '\n') {
             val = val.substring(1);
 
@@ -31,9 +43,19 @@ module.exports.ContentText = function($rootScope) {
             valLen = val.length;
             if (text[endPos]!='\n') {
               val += '\n';
-              valLen = val.length - 1;
+              varlenCorrection = - 1;
             }
+          } else {
+            if (!isSelected){
+              if (startPos > 0 && text[startPos-1] != ' ' && text[startPos-1] != '\n') {
+                val = ' ' + val;
+              }
+            }
+
           }
+
+          var valLen = val.length + varlenCorrection;
+
           domElement.value = text.substring(0, startPos) + val + text.substring(endPos);
           domElement.focus();
           domElement.selectionStart = startPos + valLen;

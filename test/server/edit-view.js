@@ -59,6 +59,7 @@ describe('Unit: EditView', function() {
  		expect(viewQuery('button[ng-click="toolB()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolI()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolLNK()"]').is('button')).to.be.ok;
+ 		expect(viewQuery('button[ng-click="toolHREF()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolIMG()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolCOD()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolCIT()"]').is('button')).to.be.ok;
