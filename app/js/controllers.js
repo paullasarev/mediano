@@ -106,9 +106,9 @@ module.exports.EditController = function($scope, ArticleService, $routeParams, $
         + '| :------------ |:---------------:| -----:|\n'
         + '| col 3 is      | some wordy text | $1600 |\n'
         + '| col 2 is      | centered        |   $12 |\n'
-        + '| zebra stripes | are neat        |    $1)|\n'
+        + '| zebra stripes | are neat        |    $1)|~(|)\n'
         + '~(|---|\n'
-        + '|...|\n)'
+        + '|...|..|\n)'
     );    
   };
 

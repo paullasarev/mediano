@@ -18,11 +18,11 @@ module.exports.ContentText = function($rootScope) {
           var isSelected = false;
           if (endPos > startPos) {
             val = val.replace(/\([^)]*\)/, text.substring(startPos, endPos));
-            val = val.replace(/\~\(([^)]*)\)/, "$1");
+            val = val.replace(/\~\(([^)]*)\)/g, "$1");
             isSelected = true;
           } else {
             val = val.replace(/\(([^)]*)\)/, "$1");
-            val = val.replace(/\~\(([^)]*)\)/, "");
+            val = val.replace(/\~\(([^)]*)\)/g, "");
           }
           
           var varlenCorrection = 0;
