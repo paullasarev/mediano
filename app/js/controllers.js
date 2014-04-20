@@ -14,11 +14,8 @@ module.exports.ViewController = function($scope, ArticleService, $routeParams, $
   }
 
   $scope.newPage = function() {
-    //var art = {content : "new page", html : "<p>new page</p>"};
     var art = ArticleService.newPage($routeParams.articleId);
     $scope.fillPage(art);
-    //$scope.content = "new page";
-    //$scope.html = "<p>new page</p>";
   }
 
   var article = ArticleService.getArticle($routeParams.articleId);
@@ -26,41 +23,48 @@ module.exports.ViewController = function($scope, ArticleService, $routeParams, $
 };
 
 
-module.exports.EditController = function($scope, ArticleService, $routeParams, $rootScope) {
+module.exports.EditController = function($scope, ArticleService, $routeParams, $rootScope, $location) {
 
   var article = ArticleService.getArticle($routeParams.articleId);
   $scope.content = article.content;
   $scope.html = article.html;
   $rootScope.currentArticle = $routeParams.articleId;
 
-//  $scope.$on('$viewContentLoaded', editViewLoaded);
   $scope.Changed = function() {
     $scope.html = ArticleService.md2html($scope.content);
-};
+  };
 
   $scope.SavePage = function() {
-    //console.log("SavePage: id:" + $routeParams.articleId + " content: " + $scope.content);
     ArticleService.setArticle($routeParams.articleId, $scope.content);
+    $location.path('/' + $routeParams.articleId + '/view');
   };
 
   $scope.CancelPage = function() {
     var article = ArticleService.getArticle($routeParams.articleId);
     $scope.content = article.content;
     $scope.Changed();
+    $location.path('/' + $routeParams.articleId + '/view');
   };
 
   $scope.insertText = function(text) {
-    // $scope.content += text;
     $rootScope.$broadcast('insertContent', text);
     $scope.Changed();
+  };
+
+  $scope.toolH2 = function() {
+    $scope.insertText('\n## (Header)');
   };
 
   $scope.toolH3 = function() {
     $scope.insertText('\n### (Header)');
   };
 
-  $scope.toolH2 = function() {
-    $scope.insertText('\n## (Header)');
+  $scope.toolH4 = function() {
+    $scope.insertText('\n#### (Header)');
+  };
+
+  $scope.toolHR = function() {
+    $scope.insertText('\n___\n');
   };
 
   $scope.toolUL = function() {

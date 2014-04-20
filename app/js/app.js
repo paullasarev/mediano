@@ -65,6 +65,7 @@ medianoApp.controller('EditController', [
   'ArticleService',
   '$routeParams',
   '$rootScope',
+  '$location',
   controllers.EditController
 ]);
 

@@ -52,8 +52,9 @@ describe('Unit: EditView', function() {
 	});
 
  	it('should have toolbar binding', function() {
+    expect(viewQuery('button[ng-click="toolH2()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolH3()"]').is('button')).to.be.ok;
- 		expect(viewQuery('button[ng-click="toolH2()"]').is('button')).to.be.ok;
+    expect(viewQuery('button[ng-click="toolH4()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolUL()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolOL()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolB()"]').is('button')).to.be.ok;
@@ -64,6 +65,7 @@ describe('Unit: EditView', function() {
  		expect(viewQuery('button[ng-click="toolCOD()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolCIT()"]').is('button')).to.be.ok;
  		expect(viewQuery('button[ng-click="toolTBL()"]').is('button')).to.be.ok;
+    expect(viewQuery('button[ng-click="toolHR()"]').is('button')).to.be.ok;
 	});
 
  });

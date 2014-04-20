@@ -88,6 +88,18 @@ describe('Unit: EditController', function() {
       expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n## (Header)');
   });
 
+  it('toolH4 should add sample text', 
+    function() {
+      scope.toolH4();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n#### (Header)');
+  });
+
+  it('toolHR should add sample text', 
+    function() {
+      scope.toolHR();
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('insertContent', '\n___\n');
+  });
+
   it('toolUL should add sample text', 
     function() {
       scope.toolUL();
