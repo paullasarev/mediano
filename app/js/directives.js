@@ -20,9 +20,12 @@ var ContentTextLogic = function(val, text, startPos, endPos) {
   if (val[0] == '\n') {
     val = val.substring(1);
 
+    //keep \n before div if insert in the middle
     if (startPos > 0 && text[startPos-1]!='\n') {
       val = '\n' + val;
     }
+    // add \n after div if insert not before newline 
+    // and position to end of div
     valLen = val.length;
     if (text[endPos]!='\n') {
       val += '\n';
@@ -30,11 +33,11 @@ var ContentTextLogic = function(val, text, startPos, endPos) {
     }
   } else {
     if (!isSelected){
+      // add space before span if insert not after space or newline
       if (startPos > 0 && text[startPos-1] != ' ' && text[startPos-1] != '\n') {
         val = ' ' + val;
       }
     }
-
   }
 
   var valLen = val.length + varlenCorrection;

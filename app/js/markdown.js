@@ -63,7 +63,7 @@ marked.setOptions({
       try {
         return highlight.highlight(lang, code).value;
       } catch(e) {
-       return highlight.highlightAuto(code).value;
+        return highlight.highlightAuto(code).value;
       }
     } else {
       return highlight.highlightAuto(code).value;
