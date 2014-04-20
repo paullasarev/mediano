@@ -58,8 +58,16 @@ renderer.link = function(href, title, text) {
 };
 
 marked.setOptions({
-  highlight: function (code) {
-    return highlight.highlightAuto(code).value;
+  highlight: function (code, lang) {
+    if (lang) {
+      try {
+        return highlight.highlight(lang, code).value;
+      } catch(e) {
+       return highlight.highlightAuto(code).value;
+      }
+    } else {
+      return highlight.highlightAuto(code).value;
+    }
   },
   renderer: renderer
 });
