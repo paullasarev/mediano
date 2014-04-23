@@ -14,17 +14,20 @@ require('../../bower_components/bootstrap/js/dropdown');
 require('../../bower_components/bootstrap/js/transition');
 require('../../bower_components/bootstrap/js/collapse');
 
-require('../../bower_components/angular-strap/dist/angular-strap.min');
-require('../../bower_components/angular-strap/dist/angular-strap.tpl.min');
+// require('../../bower_components/angular-strap/dist/angular-strap.min');
+// require('../../bower_components/angular-strap/dist/angular-strap.tpl.min');
+
 
 var controllers = require("./controllers");
 var services = require("./services");
 var directives = require("./directives");
+var navbar = require('./navbar');
+
 
 // Create your app module
 var medianoApp = angular.module('medianoApp', [
   'ngRoute',
-  'mgcrea.ngStrap',
+  // 'mgcrea.ngStrap',
   'ngSanitize',
   'monospaced.elastic'
 ]);
@@ -83,6 +86,10 @@ medianoApp.directive('contentText', [
    directives.ContentText
 ]);
 
-medianoApp.value('directives', directives);
+medianoApp.directive('bsNavbar', [
+  '$location',
+   navbar.BsNavbar
+]);
 
+medianoApp.value('directives', directives);
 
