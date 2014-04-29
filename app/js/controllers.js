@@ -1,5 +1,8 @@
+//var auth = require('./auth');
 
-module.exports.NavController = function($scope, $rootScope) {
+module.exports.NavController = function($scope, $rootScope, GAPI) {
+  //auth(GAPI);
+  GAPI.init();
   $scope.currentArticle = function() {
     return $rootScope.currentArticle;
   };

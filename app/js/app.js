@@ -17,6 +17,11 @@ require('../../bower_components/bootstrap/js/collapse');
 // require('../../bower_components/angular-strap/dist/angular-strap.min');
 // require('../../bower_components/angular-strap/dist/angular-strap.tpl.min');
 
+//gapi
+require('../../lib/gapi/client');
+require('../../bower_components/ngGAPI/gapi');
+
+// auth = require('./auth');
 
 var controllers = require("./controllers");
 var services = require("./services");
@@ -29,7 +34,8 @@ var medianoApp = angular.module('medianoApp', [
   'ngRoute',
   // 'mgcrea.ngStrap',
   'ngSanitize',
-  'monospaced.elastic'
+  'monospaced.elastic',
+  'gapi'
 ]);
 
 medianoApp.config(['$routeProvider', function($routeProvider) {
@@ -52,6 +58,7 @@ medianoApp.config(['$routeProvider', function($routeProvider) {
 medianoApp.controller('NavController', [
   '$scope',
   '$rootScope',
+  'GAPI',
   controllers.NavController
 ]);
 
@@ -93,3 +100,16 @@ medianoApp.directive('bsNavbar', [
 
 medianoApp.value('directives', directives);
 
+//gapi config
+medianoApp.value('GoogleApp', {
+    apiKey: 'AIzaSyCRB5EGQxatIp2rvwbaczfgLO6yYmIyUDs',
+    clientId: '694141446922-doq6g7ibrq3kpmgc0gejp28u1kaoa6dc.apps.googleusercontent.com',
+    scopes: [
+      // whatever scopes you need for your app, for example:
+      'https://www.googleapis.com/auth/drive'
+      // 'https://www.googleapis.com/auth/youtube',
+      // 'https://www.googleapis.com/auth/userinfo.profile'
+      // ...
+    ],
+    immediate: true
+  });

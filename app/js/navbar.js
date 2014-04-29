@@ -26,9 +26,9 @@ module.exports.BsNavbar =  function(/*$window,*/ $location /*, $navbar*/ ) {
 
           var liElement = angular.element(li);
           var pattern = liElement.attr(options.routeAttr).replace('/', '\\/');
-          if(options.strict) {
-            pattern = '^' + pattern + '$';
-          }
+          // if(options.strict) {
+          //   pattern = '^' + pattern + '$';
+          // }
           var regexp = new RegExp(pattern, ['i']);
 
           if(regexp.test(newValue)) {

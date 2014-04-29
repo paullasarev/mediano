@@ -25,7 +25,8 @@
     "bootstrap-datepicker": "*",
     "bootstrap-select": "*",
     "angular-sanitize": "~1.2.16",
-    "angular-elastic": "~2.3.2"
+    "angular-elastic": "~2.3.2",
+    "ngGAPI": "https://github.com/paullasarev/ngGAPI.git"
   },
   "resolutions": {
     "bootstrap": "~3"
