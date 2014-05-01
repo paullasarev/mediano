@@ -111,5 +111,6 @@ medianoApp.value('GoogleApp', {
       // 'https://www.googleapis.com/auth/userinfo.profile'
       // ...
     ],
+    // false to show the user consent messare
     immediate: true
   });

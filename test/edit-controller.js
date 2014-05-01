@@ -1,36 +1,35 @@
 describe('Unit: EditController', function() {
-  // Load the module with ViewController
-  //beforeEach(module('medianoApp'));
-  var FakeArticle = {};
   var NewContent = 'new content';
   var FakeArticleService;
   var rootScope;
+  var $provide;
+
+  beforeEach(module('medianoApp'));
 
   beforeEach(function(){
-    module('medianoApp', function($provide){
-    FakeArticleService = {
-      getArticle: function(id) {
-          return FakeArticle;
-      },
-      setArticle: function(id, cont) {
-          FakeArticle = {'id':id, 'content': cont, 'html':'<p>' + cont + '</p>'};
-      },
-      md2html: function(content) {
-          return "<p>" + content + "</p>";
-      },
-
-      };
-
-    FakeArticleService.setArticle('main', 'asdf');
-
-    $provide.value('ArticleService', FakeArticleService);
+    module('medianoApp', function(_$provide_){
+      $provide = _$provide_;
     });
+  });
 
-    inject(function($injector) {
+  beforeEach(function(){
+    inject(function($injector, _FakeArticleService_) {
+      
+      // provide the fake ArticleService to angular scope
+      $provide.value('ArticleService', _FakeArticleService_);
+
+      // and store it locally for further usage
+      FakeArticleService = _FakeArticleService_;
+
       rootScope = $injector.get('$rootScope');
       spyOn(rootScope, '$broadcast');
-    })   
+    });
   });
+
+  beforeEach(function(){
+      FakeArticleService.setArticle('main', 'asdf');
+  });
+
 
   var ctrl, scope;
   // inject the $controller and $rootScope services
@@ -48,24 +47,24 @@ describe('Unit: EditController', function() {
     function() {
       expect(scope.content).toBeDefined();
       expect(scope.html).toBeDefined();
-      expect(scope.content).toEqual(FakeArticle.content);
-      expect(scope.html).toEqual(FakeArticle.html);
+      expect(scope.content).toEqual(FakeArticleService.lastArticle().content);
+      expect(scope.html).toEqual(FakeArticleService.lastArticle().html);
   });
 
   it('should save article to ArticleService', 
     function() {
-      expect(scope.content).toEqual(FakeArticle.content);
+      expect(scope.content).toEqual(FakeArticleService.lastArticle().content);
       scope.content = NewContent;
       scope.SavePage();
-      expect(FakeArticle.content).toEqual(NewContent);
+      expect(FakeArticleService.lastArticle().content).toEqual(NewContent);
   });
 
   it('CancelPage should restore article from ArticleService', 
     function() {
-      expect(scope.content).toEqual(FakeArticle.content);
+      expect(scope.content).toEqual(FakeArticleService.lastArticle().content);
       scope.content = NewContent;
       scope.CancelPage();
-      expect(scope.content).toEqual(FakeArticle.content);
+      expect(scope.content).toEqual(FakeArticleService.lastArticle().content);
   });
 
   it('Changed should turn content into html', 
