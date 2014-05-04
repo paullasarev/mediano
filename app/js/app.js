@@ -76,6 +76,7 @@ medianoApp.controller('EditController', [
   '$routeParams',
   '$rootScope',
   '$location',
+  'Drive',
   controllers.EditController
 ]);
 

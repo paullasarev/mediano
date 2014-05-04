@@ -20,10 +20,20 @@ angular.module('medianoApp')
     },
   };
 })
+
 .factory('GAPI', function () {
   return {
     init: function() {
     }
   }
+})
 
-});
+.factory('Drive', function () {
+  return {
+    listFiles: function() {
+      return 'fake list';
+    }
+  }
+})
+
+;

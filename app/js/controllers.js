@@ -1,4 +1,5 @@
 //var auth = require('./auth');
+var util = require('util');
 
 module.exports.NavController = function($scope, $rootScope, GAPI) {
   //auth(GAPI);
@@ -8,7 +9,7 @@ module.exports.NavController = function($scope, $rootScope, GAPI) {
   };
 };
 
-module.exports.ViewController = function($scope, ArticleService, $routeParams, $rootScope) {
+module.exports.ViewController = function($scope, ArticleService, $routeParams, $rootScope, Drive) {
 
   $scope.fillPage = function(article) {
     $scope.content = article.content;
@@ -26,7 +27,7 @@ module.exports.ViewController = function($scope, ArticleService, $routeParams, $
 };
 
 
-module.exports.EditController = function($scope, ArticleService, $routeParams, $rootScope, $location) {
+module.exports.EditController = function($scope, ArticleService, $routeParams, $rootScope, $location, Drive) {
 
   var article = ArticleService.getArticle($routeParams.articleId);
   $scope.content = article.content;
@@ -52,6 +53,13 @@ module.exports.EditController = function($scope, ArticleService, $routeParams, $
   $scope.insertText = function(text) {
     $rootScope.$broadcast('insertContent', text);
     $scope.Changed();
+  };
+
+  $scope.toolList = function() {
+    var list = Drive.listFiles({});
+    list.then(function(value){
+      $scope.insertText('\n```\n' + util.inspect(value) + '\n```\n');
+    })
   };
 
   $scope.toolH2 = function() {
