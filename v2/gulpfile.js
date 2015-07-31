@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 var gulp = require('gulp');
 var gulpUtil = require('gulp-util');
@@ -12,7 +12,6 @@ var minifyHtml = require('gulp-minify-html');
 var uglify = require('gulp-uglify');
 var autoprefixer = require('gulp-autoprefixer');
 var csso = require('gulp-csso');
-// var concatCss = require('gulp-concat-css');
 var cssbeautify = require('gulp-cssbeautify');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
@@ -20,8 +19,16 @@ var imagemin = require('gulp-imagemin');
 var runSequence = require('run-sequence');
 // var karma = require('gulp-karma');
 var rename = require("gulp-rename");
-var bowerFiles = require('main-bower-files');
-var order = require('gulp-order');
+//var bowerFiles = require('main-bower-files');
+var bowerResolve = require('bower-resolve');
+var nodeResolve = require('resolve');
+// var order = require('gulp-order');
+var browserify  = require('browserify');
+var reactify = require('reactify');
+var source = require('vinyl-source-stream');
+var exorcist = require('exorcist');
+var transform = require('vinyl-transform');
+var buffer = require('vinyl-buffer');
 
 var conf = {
   dist: {
@@ -32,8 +39,8 @@ var conf = {
   },
   src: {
     scripts: [
-      'app/app.js',
-      '!app/**/*.spec.js'
+      'app/app_start.js',
+      '!app/**/*.spec.js',
       'app/**/*.js'
     ],
     html: [
@@ -49,7 +56,7 @@ var conf = {
       'app/**/*.main.scss'
     ],
     fonts: [
-      'app/common/fonts/**/*.{ttf,eot,svg,woff,woff2}'
+      'app/common/fonts/**/*.{ttf,eot,svg,woff,woff2}',
       'app/**/*.{ttf,eot,svg,woff,woff2}'
     ],
     images: [
@@ -99,6 +106,22 @@ var packagesOrder = [
 //     return '1:' + path;
 // });
 
+function getBowerPackageIds() {
+  var manifest = require('./bower.json');
+  return _.keys(manifest.dependencies);
+}
+
+function getNPMPackageIds() {
+  return [
+    "react",
+    "react-router",
+    "reflux"
+  ];
+  // var manifest = require('./package.json');
+  // return _.keys(manifest.dependencies)
+  //   .concat(_.keys(manifest.devDependencies));
+}
+
 gulp.task('serve', function (callback) {
   runSequence('clean:dev', 'libs:dev', 'scripts:dev', 'html:dev', 'styles:dev', 'images:dev', 'fonts:dev', 'webserver', callback);
 });
@@ -107,7 +130,7 @@ gulp.task('build', function (callback) {
   runSequence('clean:dist', 'libs:dist', 'scripts:dist', 'html:dist', 'styles:dist', 'images:dist', 'fonts:dist', callback);
 });
 
-gulp.task('dist:serve', function (callback) {
+gulp.task('serve:dist', function (callback) {
   runSequence('build', 'webserver:dist', callback);
 });
 
@@ -136,35 +159,89 @@ gulp.task('html:dist', function () {
 
 gulp.task('scripts:dev', function () {
   gulp.watch(conf.src.scripts, ['scripts:dev']);
-  return gulp.src([conf.src.scripts], { base: '../app/scripts' })
-    .pipe(sourcemaps.init())
-    .pipe(concat(conf.dest.js))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(path.join(conf.dev.dir, conf.dest.scriptsDir)));
+
+   var bundler = browserify('./app/app_start.js', {
+      extensions: ['.jsx'],
+      debug: true
+    });
+
+  getBowerPackageIds().forEach(function (id) {
+    bundler.external(id);
+  });
+
+   getNPMPackageIds().forEach(function (id) {
+    bundler.external(id);
+  });
+
+  var outDir = path.join(conf.dev.dir, conf.dest.scriptsDir);
+  return bundler
+    .transform('reactify')
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(transform( function () { return exorcist(path.join(outDir,"app.js.map")); }))
+    .pipe(gulp.dest(outDir));
 });
 
 gulp.task('scripts:dist', function () {
-  return gulp.src([conf.src.scripts])
-    .pipe(concat(conf.dest.js))
-    // .pipe(uglify())
+  var bundler = browserify('./app/app_start.js', {
+      extensions: ['.jsx'],
+      debug: false
+    });
+
+  getBowerPackageIds().forEach(function (id) {
+    bundler.external(id);
+  });
+
+   getNPMPackageIds().forEach(function (id) {
+    bundler.external(id);
+  });
+
+  return bundler
+    .transform('reactify')
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest(path.join(conf.dist.dir, conf.dest.scriptsDir)));
 });
 
 gulp.task('libs:dev', function () {
   gulp.watch(conf.src.libs, ['libs:dev']);
-  bowerFiles('**/*.js')
-  // return gulp.src(bowerPackages, {base: '../' + conf.src.libs})
-  return gulp.src(bowerFiles('**/*.js'), {base: '../' + conf.src.libs})
-    .pipe(order(packagesOrder))
-    .pipe(sourcemaps.init())
-    .pipe(concat(conf.dest.libs))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(path.join(conf.dev.dir, conf.dest.scriptsDir)));
+
+  var bundler = browserify({debug: true});
+
+  getBowerPackageIds().forEach(function (id) {
+    bundler.require(bowerResolve.fastReadSync(id), {expose: id});
+  });
+
+  getNPMPackageIds().forEach(function (id) {
+    var file = nodeResolve.sync(id);
+    bundler.require(file, { expose: id });
+  });
+
+  var outDir = path.join(conf.dev.dir, conf.dest.scriptsDir);
+  return bundler
+    .bundle()
+    .pipe(source(conf.dest.libs))
+    .pipe(transform( function(){return exorcist(path.join(outDir, conf.dest.libs + ".map"));}))
+    .pipe(gulp.dest(outDir));
 });
 
 gulp.task('libs:dist', function () {
-   return gulp.src(bowerPackages)
-    .pipe(concat(conf.dest.libs))
+  var bundler = browserify({debug: false});
+
+  getBowerPackageIds().forEach(function (id) {
+    bundler.require(bowerResolve.fastReadSync(id), {expose: id});
+  });
+
+  getNPMPackageIds().forEach(function (id) {
+    bundler.require(nodeResolve.sync(id), { expose: id });
+  });
+
+  return bundler
+    .bundle()
+    .pipe(source(conf.dest.libs))
+    .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest(path.join(conf.dist.dir, conf.dest.scriptsDir)));
 });
@@ -194,6 +271,7 @@ gulp.task('styles:dev', function () {
   return  gulp.src(conf.src.scssRoot)
     .pipe(sourcemaps.init())
     .pipe(sass())
+    .pipe(concat('app.css'))
     .pipe(sourcemaps.write({includeContent: false}))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(autoprefixer(autoprefixerBrowsers))
@@ -205,6 +283,7 @@ gulp.task('styles:dev', function () {
 gulp.task('styles:dist', function () {
   return gulp.src(conf.src.scssRoot)
     .pipe(sass())
+    .pipe(concat('app.css'))
     .pipe(autoprefixer(autoprefixerBrowsers))
     .pipe(csso())
     .pipe(gulp.dest(path.join(conf.dist.dir, conf.dest.stylesDir)));

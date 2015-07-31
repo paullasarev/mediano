@@ -1,0 +1,142 @@
+@import "../../site/mixins/placeholder.scss";
+
+$login__width: 413px;
+$login__height: 67px;
+$login__caption-font-size: 65px;
+$login__color: #fe1107;
+$login__text-color: #fdfbfa;
+$login__placeholder-color: #fdfbfa;
+$login__font-size: 24px;
+$login__text-padding: 15px;
+$login__submit-color: #ff8a0d;
+$login__submit-color-active: #e37906;
+$login__submit-text-size: 40px;
+$login__border-radius: 8px;
+$login__input-gap: 2px;
+$login__submit-gap: 15px;
+$login__fill-height: 20px;
+
+$login__details-background-color: #f2f2f2;
+$login__details-text-color: #fe1107;
+$login__details-border-color: #ff8a0d;
+$login__details-text-size: 24px;
+$login__details-border: solid 1px $login__submit-color;
+
+@mixin login__block {
+  width: $login__width;
+  height: $login__height;
+  box-sizing: border-box;
+  background-color: $login__color;
+  font-size: $login__font-size;
+  color: $login__text-color;
+
+  box-shadow: none;
+  border: none;
+  outline:none;
+}
+
+@mixin login__input {
+  @include placeholder {
+      color: $login__placeholder-color;
+    }
+
+  padding-left: $login__text-padding;
+  padding-right: $login__text-padding;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  @include login__block;
+
+}
+
+.login {
+
+  width: $login__width;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+
+
+  .login__caption {
+    display:block;
+    width: $login__width;
+    box-sizing: border-box;
+    height: $login__height;
+
+    // text version:
+    // line-height: $login__height;
+    // text-align: center;
+    // font-size: $login__caption-font-size;
+    // font-weight: bold;
+    // color:  #fe1107;
+    // font-family: CooperBlack;
+    // font-family:"source-serif-pro";
+
+    background-image: url("/images/verbivore.png");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .login__user {
+    display:block;
+    @include login__input;
+    margin-bottom: $login__input-gap;
+    border-radius: $login__border-radius $login__border-radius 0 0;
+  }
+
+  .login__password {
+    display:block;
+    @include login__input;
+    margin-bottom: $login__input-gap;
+  }
+
+  .login__fill {
+    @include login__block;
+    height: $login__fill-height;
+    margin-bottom: $login__input-gap;
+    border-radius: 0 0 $login__border-radius $login__border-radius;
+  }
+
+  .login__details {
+    width: $login__width;
+    height: $login__height;
+    box-sizing: border-box;
+
+    box-shadow: none;
+    outline:none;
+
+    border: $login__details_border;
+    border-radius: $login__border-radius;
+    background-color: $login__details-background-color;
+    border-color: $login__details-border-color;
+    font-size: $login__details-text-size;
+    color: $login__details-text-color;
+    text-align: center;
+    line-height: $login__height;
+    margin-top: $login__submit-gap;
+  }
+
+  .login__submit, .login__register {
+    display:block;
+    width: $login__width;
+    height: $login__height;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    background-color: $login__submit-color;
+    color: $login__text-color;
+    font-size: $login__submit-text-size;
+    box-shadow: none;
+    margin-top: $login__submit-gap;
+    border-radius: $login__border-radius;
+    border: none;
+    cursor: pointer;
+    outline:none;
+    &:active {
+      background-color: $login__submit-color-active;
+    }
+  }
+}
